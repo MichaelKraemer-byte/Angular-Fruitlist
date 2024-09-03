@@ -1,0 +1,5 @@
+<div class="fruitlist_content">
+    @for(singleFruit of fruitlist; track singleFruit; let index = $index){
+        <app-singlefruit (fruitName)="nameLog($event)" [fruit]="singleFruit"></app-singlefruit>
+    }
+</div>
