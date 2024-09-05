@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-singlefruit',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './singlefruit.component.html',
   styleUrl: './singlefruit.component.scss'
 })
 
-// @Input()variabel kann ich nutzen, um einen Wert von einem Child Component an ein Parent Component zu geben.
+// @Input()variabel kann ich nutzen, um einen Wert von einem Parent Component an ein Child Component zu geben.
 // Der Wert innerhalb in Input kann (muss aber nicht) definiert werden. 
 //Wenn nicht, wird einfach die Variable nach der klammer im HTML verwendet.
 // Wenn sie verwendet wird, muss sie allerdings auch so im HTML verwendet werden. 
@@ -20,6 +21,7 @@ export class SinglefruitComponent {
   starsCount = [1, 2, 3, 4, 5];
 
 
+  // von parent zu child
   @Input()fruit = 
 
   {
@@ -32,10 +34,21 @@ export class SinglefruitComponent {
   }; 
 
 
+  inputData = "";
+
+  // von child zu parent
   @Output()fruitName = new EventEmitter<string>();
 
-  emitName(){
-    this.fruitName.emit(this.fruit.name);
-  }
+  // emitName(){
+  //   this.fruitName.emit(this.fruit.name);
+  // }
+
+  sendInputData(){
+    this.fruitName.emit(this.inputData); // give with EventEmitter the inputData from ngModule from inputfield to the parent element html
+    this.inputData = ""; // clears the inputfield again.
+}
 
 }
+
+
+// der eventEmitter kann im ParentElement genutzt werden um ein event vom child element ausgehend an eine funktion des parents zu uebergeben

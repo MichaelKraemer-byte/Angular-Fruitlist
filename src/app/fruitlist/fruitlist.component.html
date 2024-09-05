@@ -1,5 +1,7 @@
 <div class="fruitlist_content">
-    @for(singleFruit of fruitlist; track singleFruit; let index = $index){
-        <app-singlefruit (fruitName)="nameLog($event)" [fruit]="singleFruit"></app-singlefruit>
+    @for(singleFruit of fruitlistData.fruitlist; track singleFruit; let index = $index){
+        <app-singlefruit (fruitName)="addComment($event, index)" [fruit]="singleFruit"></app-singlefruit>
     }
 </div>
+
+<!-- fruitName = new EventEmitter - ermoeglicht eventuebergabe vim-->
